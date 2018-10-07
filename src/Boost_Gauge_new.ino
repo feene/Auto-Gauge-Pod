@@ -64,7 +64,7 @@ void loop() {
   boostKPa = (boostVal*(.00488)/(.022)+20);
   boostPSI = (((boostVal/1023)+0.04)/0.004) * 0.145;
 
-  atmBoostPSI = ((boostKPa * 1000) - bmpPressure) * .000145038; // Convert MPX4250AP Readings with Atomospheric Reading to bind Reletive BOOST
+  atmBoostPSI = ((boostKPa * 1000) - bmpPressure) * .000145038 - .2; // Convert MPX4250AP Readings with Atomospheric Reading to bind Reletive BOOST
   tft.setCursor(150,30);
   tft.setTextColor(ILI9341_WHITE,ILI9341_BLUE);
   tft.print(atmBoostPSI);
