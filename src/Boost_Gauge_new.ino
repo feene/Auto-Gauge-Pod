@@ -23,6 +23,7 @@ float boostVolt = 0;
 float boostKPa = 0;
 float boostPSI = 0;
 float atmBoostPSI = 0;
+float atmBoostPSIPeak = 0;
 float bmpTemp = 0;
 float bmpPressure = 0;
 bool debug_mode = false;
@@ -50,6 +51,8 @@ void setup() {
    tft.setTextColor(ILI9341_WHITE);
    tft.setTextSize(3);
    tft.print("Boost: ");
+   tft.setCursor(30,60);
+   tft.print("Peak: ");
 
 }
 
@@ -71,6 +74,18 @@ void loop() {
   delay(33);
   tft.setTextColor(ILI9341_BLUE,ILI9341_BLUE);
   tft.print(atmBoostPSI);
+
+
+  if (atmBoostPSI > atmBoostPSIPeak ) {
+    atmBoostPSIPeak = atmBoostPSI;
+    tft.setCursor(150,60);
+    tft.setTextColor(ILI9341_BLUE,ILI9341_BLUE);
+    tft.print(atmBoostPSIPeak);
+    tft.setCursor(150,60);
+    tft.setTextColor(ILI9341_WHITE,ILI9341_BLUE);
+    tft.print(atmBoostPSIPeak);
+
+}
 
 // If Debug Mode is enabled text will be output to screen
 if ( debug_mode == true) {
